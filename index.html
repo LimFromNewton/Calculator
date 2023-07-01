@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    .calculator {
+      background-color: #3C486B;
+      max-width: 300px;
+      margin: 0 auto;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #display {
+      width: 93%;
+      height: 40px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      padding: 5px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 5px;
+      justify-items: center;
+    }
+
+    button {
+      width: 70px;
+      height: 70px;
+      font-size: 20px;
+      background-color: #009FBD;
+      border: 1px solid #ccc;
+      border-radius: 50%; /* Changed to circular shape */
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #f2f2f2;
+    }
+
+    button:active {
+      background-color: #e6e6e6;
+    }
+
+    .button-operator {
+      background-color: #f2f2f2;
+      color: #555;
+      border: 1px solid #ccc;
+    }
+
+    .button-operator:hover {
+      background-color: #e6e6e6;
+    }
+
+    .button-equals {
+      background-color: #1B9C85;
+      color: #555;
+      border: 1px solid #408E91;
+    }
+
+    .button-equals:hover {
+      background-color: #d9d9d9;
+    }
+
+    .button-clear {
+      background-color: #EB455F;
+      color: #555;
+      border: 1px solid #E90064;
+    }
+
+    .button-clear:hover {
+      background-color: #e6e6e6;
+    }
+
+    footer {
+      margin-top: 20px;
+      color: #ccc;
+      font-size: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" readonly>
+    <div class="buttons">
+      <button onclick="clearDisplay()" class="button-clear">C</button>
+      <button onclick="appendValue(7)">7</button>
+      <button onclick="appendValue(8)">8</button>
+      <button onclick="appendValue(9)">9</button>
+      <button onclick="appendValue('/')">/</button>
+      <button onclick="appendValue(4)">4</button>
+      <button onclick="appendValue(5)">5</button>
+      <button onclick="appendValue(6)">6</button>
+      <button onclick="appendValue('*')">*</button>
+      <button onclick="appendValue(1)">1</button>
+      <button onclick="appendValue(2)">2</button>
+      <button onclick="appendValue(3)">3</button>
+      <button onclick="appendValue('-')">-</button>
+      <button onclick="appendValue(0)">0</button>
+      <button onclick="appendValue('.')">.</button>
+      <button onclick="calculate()" class="button-equals">=</button>
+      <button onclick="appendValue('+')">+</button>
+    </div>
+  </div>
+  
+  <footer>Made by Lim and Pabualan</footer>
+  
+  <script>
+    let displayValue = '';
+
+    function appendValue(value) {
+      displayValue += value;
+      document.getElementById('display').value = displayValue;
+    }
+
+    function calculate() {
+      try {
+        const result = eval(displayValue);
+        document.getElementById('display').value = result;
+        displayValue = '';
+      } catch (error) {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+
+    function clearDisplay() {
+      displayValue = '';
+      document.getElementById('display').value = '';
+    }
+  </script>
+</body>
+</html>
